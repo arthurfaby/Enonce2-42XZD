@@ -18,16 +18,17 @@ function our_pirabaud() {
         <input type="submit" value="Envoyer">
     </form>
     <?php
-    // global $wpdb;
-    // $query = $wpdb->prepare("SELECT * FROM wp_posts;");
-    // $rows = $wpdb->get_row( $query );
+     global $wpdb;
+     $query = $wpdb->prepare("SELECT * FROM chatbot;");
+     $rows = $wpdb->get_row( $query );
 
-    // print_r($rows);
+     print_r($rows);
 
     if (empty($_GET['message'])) {
         echo "<h2>No message</h2>";
     } else {
         $message = $_GET['message'];
         echo "<h2>$message</h2>";
+        $wpdb->insert("chatbot", array("id"=>NULL, "user_input"=>$message, "bot_output"=>"toto"));
     };
 }
